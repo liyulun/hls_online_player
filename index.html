@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+<title>M3U8 Player - HLSPlayer.net</title>
+<meta name="keywords" content="m3u8 player, hls player, m3u8, hls">
+<meta name="description" content="This page allows you to play M3U8/HLS streams online with no installation required.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"></link>
+<link rel="stylesheet" href="./styles.css"></link>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+
+<!-- <script data-ad-client="ca-pub-5694541448612364" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+</head>
+<body>
+<div class="hp-header ">
+<div class="container">
+<ul class="list-inline pull-right no-select hp-social hidden-xs">
+<li><a href="javascript:void(0)" class="hp-social-fb"><i class="fa fa-facebook fa-fw"></i></a></li>
+<li><a href="javascript:void(0)" class="hp-social-tw"><i class="fa fa-twitter fa-fw"></i></a></li>
+</ul>
+<ul class="list-inline hp-navbar">
+<li class="active"><a href="./index.html">M3U8 Player</a></li>
+<li class><a href="./mp4-player">MP4 Player</a></li>
+<li class><a href="./rtmp-player">RTMP Player</a></li>
+</ul>
+</div>
+</div>
+<div class="hp-body">
+<div class="player-section">
+<div class="container">
+<form id="player-form">
+<div class="input-group url-control">
+<input type="text" class="form-control" id="player-src" value placeholder="http://www.example.com/live/playlist.m3u8" required>
+<span class="input-group-btn">
+<button type="submit" class="btn btn-success" id="player-start">Play</button>
+</span>
+</div>
+</form>
+<div class="checkbox"></div>
+<div id="player-notes" class="hidden">
+<label><input type="checkbox" id="player-proxy">
+Enable this when you see a cross-domain error.</label>
+</div>
+<div id="player-container">
+<div id="player"></div>
+<div id="player-tip"></div>
+</div>
+</div>
+</div>
+<div class="container faq-section margin-top-30">
+<h4>What is M3U8?</h4>
+<p>M3U8 is a computer file format that contains a multimedia
+playlist. Normally the playlist points to a stream on the Internet.
+This player downloads the video specified in the M3U8 file and plays
+within your browser. To get started, </p>
+<ol>
+<li>Paste a m3u8 URL into the above input box (skip if pre-filled);</li>
+<li>Click the "Play" button.</li>
+</ol>
+<h4 class="margin-top-30">What is HLS?</h4>
+<p>HLS stands for HTTP Live Streaming. It's a HTTP-based media streaming
+communications protocol implemented by Apple Inc. It works by breaking the
+overall stream into a sequence of small file downloads,
+each download loading one short chunk of an overall potentially
+unbounded transport stream.</p>
+<p>HLS streams are usually described using M3U8 playlist.</p>
+<h4 class="margin-top-30">Browser Compatibility</h4>
+<p>Most desktop and mobile browsers are supported. However, CORS must be enabled
+on the streaming server, otherwise it may not play.
+</p>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.2.0/hls.js"></script>
+<script src="./js/main.js?v=1.0.14"></script>
+
+<script>
+	var cb = function() {
+		var l = document.createElement('link');
+		l.rel = 'stylesheet';
+		l.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css';
+		var h = document.getElementsByTagName('head')[0];
+		h.parentNode.insertBefore(l, h);
+	};
+	var raf = requestAnimationFrame || mozRequestAnimationFrame
+			|| webkitRequestAnimationFrame || msRequestAnimationFrame;
+	if (raf)
+		raf(cb);
+	else
+		window.addEventListener('load', cb);
+</script>
+<script>
+		function play() {
+			var src = $('#player-src').val().trim();
+			if (src) {
+				playM3U8(src);
+			}
+			return false;
+		}
+		$(document).ready(function() {
+			play();
+			$('#player-form').submit(play);
+		});
+	</script>
+</body>
+</html>
